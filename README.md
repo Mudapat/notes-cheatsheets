@@ -9,8 +9,11 @@
 3. SSH         :arrow_right:     [*here*](#ssh) 
 4. TCP/IP    :arrow_right:      [*here*](#tcp)
 5. Linux system monitoring tools  :arrow_right:     [*here*](#moni)
+6. Virtualization  :arrow_right: [*here*](#vir)
+7. DevOps :arrow_right: [*here*](#dev)
 ---
 <br>
+
 
 
 
@@ -63,7 +66,7 @@
 <br>
 
 
-[![git-cheat-sheet-education-1.png](https://i.postimg.cc/yNwWzT8T/git-cheat-sheet-education-1.png)](https://postimg.cc/wtQ9XLJt)
+[git-cheat-sheet-education-1.png](https://i.postimg.cc/yNwWzT8T/git-cheat-sheet-education-1.png)](https://postimg.cc/wtQ9XLJt)
 
 
 [![git-cheat-sheet-education-2.png](https://i.postimg.cc/jjNtyYRz/git-cheat-sheet-education-2.png)](https://postimg.cc/QBX2rP9t)
@@ -96,10 +99,6 @@
 
     TCP/IP stands for Transmission Control Protocol/ Internet Protocol. It is specifically designed as a model to offer highly reliable and end-to-end byte stream over an unreliable internetwork.
 
-
-
-
-
     OSI:
     The Open System Interconnection (OSI Model) also defines a logical network and effectively describes computer packet transfer by using various layers of protocols.  
   
@@ -129,7 +128,7 @@
   - It does not provide the standardization to the devices. It provides a connection between various computers
 
 
-
+🔨 Build and packaging tools
 
 
 
@@ -406,7 +405,240 @@ Linux based distributions have featured set of commands which provide way to con
 - mtr
 - ping...
 
+# VIRTUALIZATION <a id="vir"></a>
 
+
+
+## What is a virtual machine (VM)? </br>
+
+
+Virtualization is the process of running a virtual instance of a computer system in a layer abstracted from the actual hardware. Most commonly, it refers to running multiple operating systems on a computer system simultaneously.
+
+## There are two primary types of hypervisors.
+____
+</br>
+
+**Type 1 hypervisors:** <mark>run directly on the physical hardware (usually a server)</mark>, taking the place of the OS. Typically, you use a separate software product to create and manipulate VMs on the hypervisor. Some management tools, like  *VMware’s vSphere*, let you select a guest OS to install in the VM.
+
+    A hypervisor is similar to an emulator; it is computer software, firmware or hardware that creates and runs virtual machines.
+
+**Type 2 hypervisors:** <mark>run as an application within a host OS</mark> and usually target single-user desktop or notebook platforms. With a Type 2 hypervisor, you manually create a VM and then install a guest OS in it. You can use the hypervisor to allocate physical resources to your VM, manually setting the amount of processor cores and memory it can use. Depending on the hypervisor’s capabilities, you can also set options like 3D acceleration for graphics.
+
+ <img src="https://pediaa.com/wp-content/uploads/2019/04/Difference-Between-Type-1-and-Type-2-Hypervisor-Comparison-Summary-e1556635404303.jpg" width="500" height ="500">
+
+
+ </br>
+
+![hyp2](https://www.serverwatch.com/wp-content/uploads/2020/09/what-is-a-hypervisor-server_5f5ed47e2d2aa.jpeg)
+
+</br>
+
+
+
+## What Are Namespaces?
+___
+When you’re running many different processes and applications on a single server, as is the case with deployment tools like Kubernetes, it’s important to have each process isolated, mostly for security.
+
+Namespaces achieve <mark>this isolation at a kernel level </mark>(fundamental aspect of containers on Linux.). Similar to how the application ` chroot ` *(is an operation that changes the apparent root directory for the current running process and its children)* works, which <mark>**jails a process**</mark> in a different root directory, namespaces separate other aspects of the system. There are seven namespaces available (pid,net,mnt,uts,ipc,user,cgroup)
+<img src= https://blog2opstree.files.wordpress.com/2018/10/0b413-blank2bdiagram2b252842529.png width=500 height="400">
+</br>
+
+## Control group (cgroup)
+The cgroup namespace type hides the identity of the control group of which process is a member. A process in such a namespace, checking which control group any process is part of, would see a path that is actually relative to the control group set at creation time, hiding its true control group position and identity.
+
+</br>
+
+<img src= https://www.lightnetics.com/assets/uploads/files/1548929463534-cgroups.jpg width="500" height="400">
+
+</br>
+
+    1. Server resources, disk, memory, cpu, and network.
+    2. The resources as show in 1, allocated in this example to 3 cgroups.
+    3.  Hierarchically ordered groups of processes running on the system.
+   
+</br>
+
+
+
+## What are Application Containers
+ It is an application, service, or even microservice centric solution that usually runs just a single process inside. As a result, application containers promote creating immutable and ephemeral infrastructure. If an application or service needs to be updated, a whole new container is built (with the required adjustments) from the appropriate image. Then, it is provisioned to replace the existing running container instance.
+
+<img src= https://www.cloudsigma.com/wp-content/uploads/Application-container-01.png>
+
+
+
+
+
+
+
+Cont.APPS            |  VM'S
+:-------------------------:|:-------------------------:
+<img src= https://www.docker.com/wp-content/uploads/2021/11/docker-containerized-appliction-blue-border_2.png.webp width="400" >   |  <img src= https://www.docker.com/wp-content/uploads/2021/11/container-vm-whatcontainer_2.png.webp width="400">
+
+
+
+
+### *Vagrant*:
+
+Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the “works on my machine” excuse a relic of the past. — (Vagrant Intro)
+
+</br>
+
+
+<img src= https://miro.medium.com/max/1400/1*DcnQa5yO6QQVNdtpIaymAQ.png width="400" >
+
+</br>
+
+### *Docker*
+Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. The service has both free and premium tiers. The software that hosts the containers is called Docker Engine.
+
+### *Proxmox* 
+Proxmox Virtual Environment is an open-source software server for virtualization management. It is a hosted Type-1 hypervisor that can run operating systems including Linux and Windows on x64 hardware. 
+
+ allows deployment and management of virtual machines and containers. Proxmox VE includes a web console and command-line tools, and provides a REST API for third-party tools. Two types of virtualization are supported: container-based with LXC and full virtualization with KVM (Kernel Virtual Machine)<sup>*</sup>. It includes a web-based management interface.
+
+
+ <sup>*</sup> Like Xen, KVM (Kernel-based Virtual Machine) is an open source hypervisor technology for virtualizing compute infrastructure running on x86 compatible hardware. 
+
+
+ <img src= https://miro.medium.com/max/1400/1*yxCnS2vWiyE7SZWOUy1rBA.png>
+
+</br>
+
+
+
+ ## *Podman*
+
+ Podman is an open-source project that is available on most Linux platforms and resides on GitHub. Podman is a daemonless container engine for developing, managing, and running Open Container Initiative (OCI) containers and container images on your Linux System.
+
+ ![img](https://media-exp1.licdn.com/dms/image/C4E22AQFwP9ecfBb81g/feedshare-shrink_2048_1536/0/1636952989092?e=1654732800&v=beta&t=Zq2-WZ22elFSx7n-h6SD7TOhtH6aqkyhXSr0gqAzTEo)
 
  
-.
+ </br>
+
+
+
+ ## *LXC*
+
+ Linux Containers is an operating-system-level virtualization method for running multiple isolated Linux systems on a control host using a single Linux kernel.
+
+<img src= https://www.researchgate.net/profile/David_Beserra4/publication/321297465/figure/fig1/AS:685171598688263@1540369047859/KVM-and-LXC-see-online-version-for-colour.ppm>
+
+</br>
+
+## *Kubernetes*
+Kubernetes is an open-source container orchestration system for automating software deployment, scaling, and management. Google originally designed Kubernetes, but the Cloud Native Computing Foundation now maintains the project.
+
+A Kubernetes cluster consists of a set of worker machines, called nodes, that run containerized applications. Every cluster has at least one worker node.
+
+The worker node(s) host the Pods that are the components of the application workload. The control plane manages the worker nodes and the Pods(Pods are the smallest deployable units of computing that you can create and manage in Kubernetes.) in the cluster. In production environments, the control plane usually runs across multiple computers and a cluster usually runs multiple nodes, providing fault-tolerance and high availability.
+
+This document outlines the various components you need to have for a complete and working Kubernetes cluster.
+
+
+</br>
+
+## *ESXi*
+
+VMware ESXi is an enterprise-class, type-1 hypervisor developed by VMware for deploying and serving virtual computers. As a type-1 hypervisor, ESXi is not a software application that is installed on an operating system; instead, it includes and integrates vital OS components, such as a kernel.
+
+</br>
+
+<img src=https://www.iperiusbackup.net/wp-content/uploads/2017/11/VM.jpg>
+
+</br>
+
+# DevOps <a id=dev></a>
+
+    DevOps focuses on ways to allow code to be deployed more regularly. If software is deployed more regularly, it means that new features can be added to an app faster.
+
+> <mark>Automating everything:</mark> By automating the process of building and deploying software, so that you don’t need to do so many manual tasks.
+
+> <mark>Adding automated tests:</mark>  If you can test your software, you will have more confidence in it. Even better if those tests can be automated! (So a person doesn’t need to perform manual steps to test the software)
+
+> <mark>Working together:</mark>  By encouraging developers and operations to work more closely together. (This may sound strange if you’re new to coding, but it hasn’t always been the case that developers & ops teams work closely together!)
+
+> <mark>Deploying software reliably:</mark> Sometimes software gets deployed which hasn’t been tested, or which takes a lot of tricky manual work to get running. This can cause a lot of stress and unpredictability. 
+
+</br>
+
+## What is the difference between CI and CD?
+
+    The "CD" in CI/CD refers to continuous delivery and/or continuous deployment, which are related concepts that sometimes get used interchangeably. Both are about automating further stages of the pipeline, but they’re sometimes used separately to illustrate just how much automation is happening.
+
+   ![img](https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/ci-cd-flow-desktop.png?itok=2EX0MpQZ)
+
+</br>
+
+## The 7 essential stages of a CI/CD pipeline
+
+</br>
+
+
+> - <mark>The trigger:</mark> The best pipelines are triggered automatically when new code is committed to the repository.
+
+> - <mark>Code checkout:</mark> In this first stage, the CI server will check out the code from the source code repository, such as GitHub or Bitbucket.
+
+> - <mark>Compile the code:</mark> This means that your CI tool needs to have access to whatever build tools you need to compile your app. For example, if it’s Java, you’ll use something like Maven or Gradle.
+
+> - <mark>Run unit tests: </mark> where you configure your CI/CD tool to execute the tests that are in your codebase.
+
+
+
+> - <mark>Package the code:</mark> If you’re using Java, you might build a JAR file. If you’re using Docker containers, you might build a Docker image.build the binary only once. Don’t build a different binary for each environment, because this will cause your pipeline to become very complex.
+
+> - <mark>Run acceptance tests:</mark> Acceptance tests generally cover the functional parts of the application. For example, on a shopping website, an acceptance test might ensure that a user can add a product to their basket.
+
+> - <mark>Delivery or Deployment:</mark> you have an artifact ready to be deployed (continuous delivery). Or, you can continue to CI/CD heaven and automatically deploy your software (continuous deployment).
+
+</br>
+
+## 🔨 Build and packaging tools
+---
+<mark>Git</mark> is a tool for managing, sharing and tracking changes in source code files.
+
+<mark>Docker</mark> is a toolkit for building and running software in containers.
+
+</br>
+
+## 🎺 Application orchestration
+---
+</br>
+<mark>Kubernetes</mark> is an orchestration tool for managing your applications running in containers.
+
+</br>
+
+## 🏗 Infrastructure automation
+---
+</br>
+
+<mark>Terraform</mark> is a tool for creating and managing cloud resources with code.
+
+<mark>Ansible</mark> is a tool for automatic configuration of infrastructure - e.g. installing packages, configuring web servers, creating user accounts, and so on.
+
+</br>
+
+## ⛳ CI/CD
+---
+<mark>GitLab</mark> is a tool for managing application source code and automating the build and release of your application.
+GitLab’s built-in CI/CD feature lets you create workflows to build, test and deploy your applications.
+
+<mark>Jenkins</mark> is an automation server for running software build and testing jobs, and much more.
+
+<br>
+
+## 🛂 Testing & quality
+---
+<mark>Sonarqube</mark> is a code-quality checking tool.
+
+</br>
+
+## 📈 Logging & monitoring
+---
+
+<mark>Prometheus</mark> is a monitoring and alerting toolkit.
+
+<mark>Grafana</mark> is a dashboarding tool. It’s often used to show system and application stats, to make it easier to visualise what’s happening in a system.
+
+
+
