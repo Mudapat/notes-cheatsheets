@@ -256,6 +256,63 @@ When a user issues a command that uses a TCP/IP application layer protocol, a se
 
 <br>
 
+# IPv4 Addresses and Structure
+
+IPv4 uses 32 bits for addressing. The 32 bits are split into 4 bytes and each byte is separated by a dot(.)
+
+Where the value  is between 0-255 decimal. A typical IP address appears like this:
+
+            192.168.0.1
+
+## IP4 Address Classes
+
+The address classes divide the address space into addresses that support:
+
+Large numbers of nodes – Intended for a large organisation – Class A addresses
+Medium number of nodes- Class B addresses
+Small number of nodes- Intended for a small organisation –Class C addresses
+
+![img](https://miro.medium.com/max/1400/1*wbYRk65-lnwsWYSFJ656xw.png)
+
+**127.0.0.1** is commonly known as the loopback address, and is used for testing the local IP address stack. A packet addressed to 127.0.0.1 is not sent onto the network but only the IP software stack.
+
+*Classless Inter-Domain Routing (CIDR)**
+
+# What is a subnet?
+
+There are millions of networks around the world, and they all vary in size. However, the larger a network is, the harder it is to manage and maintain. When a network is divided into smaller pieces, those pieces are called subnets. A subnet is a small network.
+
+## Subnetting is beneficial in many ways:
+
+    - Easier maintenance;
+    - Advanced network security so that one subnet can’t access the other one;
+    - Reduced network traffic;
+    - When you can subnet your network, you don’t need to acquire additional IP addresses from ISPs (internet service providers).
+    - However, subnetting often requires additional hardware such as routers, so it also comes with a cost.
+
+![img](https://nordvpn.com/wp-content/uploads/2020/11/subnet-infographic.jpg)
+
+For example, consider the IP address 207.61.16.119 and the subnet mask 255.255.255.0. Converting these two numbers to binary and ANDing them gives the host’s Network ID:
+
+    Host = 11001111 00111101 00010000 01110111
+    Mask = 11111111 11111111 11111111 00000000
+    AND = 11001111 00111101 00010000 00000000
+        = 207.61.16.0 = network ID
+        <br/>
+
+Taking the logical NOT of the subnet mask and ANDing it with the host’s IP address gives the host’s Host ID:
+
+    Host = 11001111 00111101 00010000 01110111
+NOT Mask = 00000000 00000000 00000000 11111111
+     AND = 00000000 00000000 00000000 01110111
+         = 0.0.0.119 = host ID
+
+[vidéo 1](https://youtu.be/0d1CFWXGYbA)
+
+
+
+
+
 
 ## **Linux System Monitoring Tools**<a id="moni"></a>
 
